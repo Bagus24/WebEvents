@@ -26,9 +26,17 @@ Route::get('/showJadwal', 'HomeController@showJadwal');
 
 Route::get('/create-event', 'HomeController@createEvent');
 
+Route::get('/create-jadwal', 'HomeController@createJadwal');
+
+Route::get('/edit-event/{id}', 'HomeController@editEvent');
+
 Route::post('/daftarPeserta', 'HomeController@daftarPeserta');
 
 Route::post('/postEvent', 'HomeController@postEvent');
+
+Route::post('/postJadwal', 'HomeController@postJadwal');
+
+Route::post('/postEditEvent/{id}', 'HomeController@postEditEvent');
 
 Route::get('/deskripsi-event', 'GuestController@deskripsiEvent');
 

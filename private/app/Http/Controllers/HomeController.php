@@ -116,7 +116,86 @@ class HomeController extends Controller
         return redirect('showEvent')->with('alert-success','Kamu berhasil Register');
     }
 
-    
+    public function createJadwal() 
+    {
+        return view('create-jadwal');
+    }
+
+    public function postJadwal(Request $request){
+        $messages = [
+            'required' => 'Form tidak boleh ada yang kosong',
+            'min' => 'Form harus diisi minimal 8 karakter',
+            'max' => 'Form harus diisi maksimal 20 karakter',
+        ];
+
+        $this->validate($request, [
+            'nama_event' => 'required|max:50',
+            'hari' => 'required|max:20',
+            'jam' => 'required',
+            'kegiatan' => 'required',
+            'isi' => 'required',
+        ],$messages);
+
+        $id = Auth::user()->id;
+
+        $data =  new ModelJadwal();
+        $data->id_user = $id;
+        $data->nama_event = $request->nama_event;
+        $data->hari = $request->hari;
+        $data->jam = $request->jam;
+        $data->kegiatan = $request->kegiatan;
+        $data->isi = $request->isi;
+        
+        $data->save();
+        return redirect('showJadwal')->with('alert-success','Kamu berhasil Register');
+    }
+
+    public function editEvent($id) 
+    {
+        $event = ModelEvent::findOrFail($id);
+        // return view('edit-event');
+        return view('edit-event', ['event' => $event]);
+    }
+
+    public function postEditEvent(Request $request, $id) 
+    {
+        $request->validate([
+            'nama' => 'required',
+            'kategori' => 'required',
+            'foto' => 'nullable|mimes:jpeg,jpg,png',
+            'tanggal' => 'required',
+            'isi' => 'required',
+        ]);
+
+        // $uploadedFile = $request->file('foto');
+        // $imgName = time() . str_random(22) . '.' . $uploadedFile->getClientOriginalExtension();
+        // $uploadedFile->move(public_path('./public/images/event/'), $imgName);
+        
+        $id_user = Auth::user()->id;
+
+        $data =  new ModelEvent();
+        $data = ModelEvent::find($id);
+        $data->id_user = $id_user;
+        $data->nama = $request->nama;
+        $data->kategori = $request->kategori;
+        if (!empty($request->file('foto'))) {
+            $uploadedFile = $request->file('foto');
+            $imgName = time() . str_random(22) . '.' . $uploadedFile->getClientOriginalExtension();
+            $uploadedFile->move(public_path('./public/images/event/'), $imgName);
+
+            $data->foto = $imgName;
+        }
+
+        // $data->foto = $imgName;
+        $data->tanggal = $request->tanggal;
+        if(!empty($request->isi)){
+            $data->isi = $request->isi;
+        }
+        // $data->isi = $request->isi;
+        
+        $data->save();
+        return redirect('showEvent')->with('alert-success','Kamu berhasil Register');   
+    }
 
     
 }

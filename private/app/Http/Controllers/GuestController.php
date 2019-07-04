@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
+use App\Events;
+use App\Http\Controllers\ModelEvent;
 
 class GuestController extends Controller
 {
@@ -13,7 +16,9 @@ class GuestController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $event = Events::all();
+    	return view('index', ['event' => $event]);
+        
     }
 
     /**
@@ -45,7 +50,7 @@ class GuestController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -85,5 +90,11 @@ class GuestController extends Controller
     public function deskripsiEvent() 
     {
         return view('deskripsi-event');   
+    }
+
+    public function showAllEvent() 
+    {
+        $events = Events::all();
+    	return view('index', ['event' => $events]);
     }
 }
