@@ -12,16 +12,28 @@
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
+                    <th scope="col">Aksi</th>
                     <th scope="col">Nama organisasi</th>
                     <th scope="col">Email</th>
                     <th scope="col">Password</th>
-                    <th scope="col">Aksi</th>
+                    
                     <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
                 
                   <tr>
+                  <td class="text-right">
+                      <div class="dropdown">
+                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fas fa-ellipsis-v"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                          <a class="dropdown-item" href="{{ url('edit-akun') }}/{{ $users->id }}">Edit</a>
+                          
+                        </div>
+                      </div>
+                    </td>
                     <th scope="row">
                       <div class="media align-items-center">
                         <div class="media-body">
@@ -38,17 +50,7 @@
                       </span>
                     </td>
                     
-                    <td class="text-right">
-                      <div class="dropdown">
-                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fas fa-ellipsis-v"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                          <a class="dropdown-item" data-toggle="modal" data-target="#modal-form">Edit</a>
-                          
-                        </div>
-                      </div>
-                    </td>
+                    
                   </tr>
                   
                 </tbody>

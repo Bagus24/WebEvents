@@ -32,8 +32,8 @@
                           <i class="fas fa-ellipsis-v"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                          <a class="dropdown-item" href="#">Edit</a>
-                          <a class="dropdown-item" href="#">Delete</a>
+                          <a class="dropdown-item" href="{{ url('edit-jadwal') }}/{{ $j->id }}">Ubah</a>
+                          <a class="dropdown-item" href="{{ url('hapus-jadwal') }}/{{ $j->id }}">Hapus</a>
                           
                         </div>
                       </div>

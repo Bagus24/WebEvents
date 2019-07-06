@@ -21,6 +21,7 @@ class CreatePesertaTable extends Migration
             $table->string('no_hp',20);
             $table->string('alamat');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

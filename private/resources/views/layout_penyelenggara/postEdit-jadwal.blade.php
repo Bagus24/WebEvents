@@ -5,26 +5,18 @@
         <div class="col">
           <div class="card shadow">
             <div class="card-header bg-transparent">
-              <h3 class="mb-0">Post Event</h3>
+              <h3 class="mb-0">Post Ubah Jadwal</h3>
             </div>
             <div class="card-body">
               <div class="container">
                 
-                <form style="margin:20px;" action="{{ url('postJadwal') }}" method="post" enctype="multipart/form-data">
+                <form style="margin:20px;" action="{{ url('postEditJadwal') }}/{{ $jadwal->id }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                     <div class="col-xl-12" >
                         <label for="judul" class="col-sm-6">Nama event</label>
                         <div class="col-12">
                             <div class="form-group">
-                                <!-- <input name="nama_event" type="text" class="form-control" id="judul" placeholder="Nama event"> -->
-                                
-                                <select name="nama_event">
-                                    @foreach($event as $e)
-                                    <option value="{{ $e->nama }}">{{ $e->nama }}</option>
-                                    @endforeach
-                                </select>
-
-                               
+                                <input disabled value="{{ $jadwal->nama_event }}" name="nama_event" type="text" class="form-control" id="judul" placeholder="Nama event">
                             </div>
                         </div>
                     </div>
@@ -34,6 +26,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <select name="hari">
+                                    <option value="{{ $jadwal->hari }}">ke - {{ $jadwal->hari }}</option>
                                     <option value="1">ke - 1</option>
                                     <option value="2">ke - 2</option>
                                     <option value="3">ke - 3</option>
@@ -50,7 +43,7 @@
                         <label for="jam" class="col-sm-6">Waktu</label>
                         <div class="col-12">
                             <div class="form-group">
-                                <input name="jam" type="time" class="form-control" id="jam" placeholder="Pukul berapa">
+                                <input value="{{ $jadwal->jam }}" name="jam" type="time" class="form-control" id="jam" placeholder="Pukul berapa">
                             </div>
                         </div>
                     </div>
@@ -59,7 +52,7 @@
                         <label for="kegiatan" class="col-sm-6">Kegiatan</label>
                         <div class="col-12">
                             <div class="form-group">
-                                <input name="kegiatan" type="text" class="form-control" id="kegiatan" placeholder="Nama kegiatan">
+                                <input value="{{ $jadwal->kegiatan }}" name="kegiatan" type="text" class="form-control" id="kegiatan" placeholder="Nama kegiatan">
                             </div>
                         </div>
                     </div>
@@ -68,7 +61,7 @@
                         <label for="isi" class="col-sm-6">Isi kegiatan</label>
                         <div class="col-12">
                             <div class="form-group">
-                                <textarea name="isi" class="form-control form-control-alternative" rows="3" placeholder="Isi kegiatan" id="isi" name="isi"></textarea>
+                                <textarea value="{{ $jadwal->isi }}" name="isi" class="form-control form-control-alternative" rows="3" placeholder="Isi kegiatan" id="isi">{{ $jadwal->isi }}</textarea>
                                 <!-- <script>
                                     CKEDITOR.replace( 'isi' );
                                 </script> -->

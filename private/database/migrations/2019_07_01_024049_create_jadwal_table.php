@@ -22,6 +22,7 @@ class CreateJadwalTable extends Migration
             $table->string('kegiatan');
             $table->string('isi');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -22,6 +22,7 @@ class CrateEventTable extends Migration
             $table->date('tanggal');
             $table->text('isi');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
