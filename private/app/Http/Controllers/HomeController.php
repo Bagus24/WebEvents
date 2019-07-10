@@ -30,9 +30,9 @@ class HomeController extends Controller
     {
         // return view('home');
         $id = Auth::user()->id;
-        $peserta = ModelPeserta::where('id_user', $id)->get();
+        $peserta = ModelPeserta::where('id_user', $id)->paginate(1);
         // $users = ModelUser::find($id);
-    	return view('home', ['peserta' => $peserta]);
+        return view('home', ['peserta' => $peserta]);
     }
 
     public function showAkun() 
@@ -46,14 +46,14 @@ class HomeController extends Controller
     public function showEvent() 
     {
         $id = Auth::user()->id;
-        $event = ModelEvent::where('id_user', $id)->get();
+        $event = ModelEvent::where('id_user', $id)->paginate(1);
     	return view('showEvent', ['event' => $event]);
     }
 
     public function showJadwal() 
     {
         $id = Auth::user()->id;
-        $jadwal = ModelJadwal::where('id_user', $id)->get();
+        $jadwal = ModelJadwal::where('id_user', $id)->paginate(1);
         return view('showJadwal', ['jadwal' => $jadwal]);
     }
 
@@ -168,10 +168,6 @@ class HomeController extends Controller
             'tanggal' => 'required',
             'isi' => 'required',
         ]);
-
-        // $uploadedFile = $request->file('foto');
-        // $imgName = time() . str_random(22) . '.' . $uploadedFile->getClientOriginalExtension();
-        // $uploadedFile->move(public_path('./public/images/event/'), $imgName);
         
         $id_user = Auth::user()->id;
 
@@ -288,7 +284,7 @@ class HomeController extends Controller
         $data = ModelUser::find($id);
         $data->name= $request->name;
         $data->email = $request->email;
-        $data->password = $request->password;
+        $data->password = bcrypt($request->password);
         $data->save();
         return redirect('showAkun')->with('alert-success','Kamu berhasil Register');
          
@@ -318,4 +314,17 @@ class HomeController extends Controller
     
             return redirect('showJadwal');
     }
+
+    public function search()
+    {
+        $search = $request->get('search');
+        if ($search != '')
+            $peserta = ModelPeserta::where('event', 'like', "%{$search}%")->get();
+        else
+            $peserta = ModelPeserta::all();
+
+        $data['key'] = $search;
+        return view('blog.index')->with($data);
+    }
+
 }

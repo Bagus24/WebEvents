@@ -5,9 +5,9 @@
           <div class="card shadow">
             <div class="card-header border-0">
               <h3 class="mb-0">Tabel Peserta</h3>
-                <div class="col text-right">
+                <!-- <div class="col text-right">
                   <button class="btn btn-primary " data-toggle="modal" data-target="#modal-form">Tambah Data</button>
-                </div>
+                </div> -->
             </div>
             <div class="table-responsive">
               <table class="table align-items-center table-flush">
@@ -86,8 +86,16 @@
         <div class="text-center text-muted mb-4">
             <small>Silahkan isi form peserta</small>
         </div>
-        <form role="form" action="{{ url('daftarPeserta') }}" method="post">
+        <form role="form" action="{{ url('adminDaftarPeserta') }}" method="post">
         {{ csrf_field() }}
+            <div class="form-group">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"></span>
+                    </div>
+                    <input class="form-control" placeholder="Nama penyelenggara" type="text" name="nama">
+                </div>
+            </div>
             <div class="form-group">
                 <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">

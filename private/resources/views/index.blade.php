@@ -14,7 +14,7 @@
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
           <div class="col-xl-10 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-            <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"> TEMUKAN...!!!!! <br><span>Event - event 2019</span></h1>
+            <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"> TEMUKAN...!!!!! <br><span>Event - event TERBARU</span></h1>
             
           </div>
         </div>

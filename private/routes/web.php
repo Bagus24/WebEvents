@@ -5,7 +5,7 @@ Route::get('/', 'GuestController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+// Route::get('/admin', 'AdminController@index')->name('adminpage');
 Route::get('/admin', function(){
     return view('admin');
 })->name('adminpage');
@@ -60,8 +60,8 @@ Route::post('/postEditJadwal/{id}', 'HomeController@postEditJadwal');
 Route::post('/postEditAkun/{id}', 'HomeController@postEditAkun');
 
 
-
-
+Route::get('/admin-peserta', 'AdminLoginController@adminPeserta');
+Route::post('/adminDaftarPeserta', 'AdminLoginController@adminDaftarPeserta');
 
 
 Route::get('/deskripsi-event', 'GuestController@deskripsiEvent');

@@ -16,7 +16,7 @@
                         <label for="judul" class="col-sm-6">Nama Organisasi</label>
                         <div class="col-12">
                             <div class="form-group">
-                                <input value="{{$users->name}}" name="name" type="text" class="form-control" id="judul" placeholder="Nama">
+                                <input value="{{$users->name}}" name="name" type="text" class="form-control" id="judul" placeholder="Nama organisasi">
                             </div>
                         </div>
                     </div>
@@ -31,10 +31,10 @@
                     </div>
 
                     <div class="col-xl-12" >
-                        <label for="no_hp" class="col-sm-6">Password</label>
+                        <label for="no_hp" class="col-sm-6">Kata sandi</label>
                         <div class="col-12">
                             <div class="form-group">
-                                <input value="{{$users->password}}" name="password" type="text" class="form-control" id="no_hp" placeholder="No HP / WA">
+                                <input value="{{$users->password}}" name="password" type="text" class="form-control" id="no_hp" placeholder="Kata sandi">
                             </div>
                         </div>
                     </div>

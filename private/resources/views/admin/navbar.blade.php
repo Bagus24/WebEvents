@@ -5,13 +5,12 @@
     <!-- Form -->
     <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
         <div class="form-group mb-0">
-            <div class="input-group input-group-alternative">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" onclick="search()"><i class="fas fa-search"></i></span>
-                </div>
-                <input placeholder="Cari peserta event" type="text" id="search" class="form-control" value="{{ !empty($key) ? $key:'' }}">
-
+        <div class="input-group input-group-alternative">
+            <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-search"></i></span>
             </div>
+            <input class="form-control" placeholder="Cari peserta" type="text">
+        </div>
         </div>
     </form>
     <!-- User -->
@@ -23,7 +22,7 @@
                 <img alt="Image placeholder" src="{{ asset ('public/dist_argon/assets/img/theme/ppku.png') }}">
             </span>
             <div class="media-body ml-2 d-none d-lg-block">
-                <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name }}</span>
+                <span class="mb-0 text-sm  font-weight-bold">Akun</span>
             </div>
             </div>
         </a>
@@ -39,22 +38,15 @@
             <div class="dropdown-divider"></div>
             <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-            <i class="ni ni-user-run"></i>
-            <span>Logout</span>
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        <i class="ni ni-user-run"></i>
+                        <span>Logout</span>
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+            </a>
         </div>
         </li>
     </ul>
     </div>
 </nav>
-
-<script>
-        function search(){
-            let key = $("#search").val();
-            let url = "{{ url('home') }}" + "?search=" + key;
-            location.href = url;
-        }
-</script>

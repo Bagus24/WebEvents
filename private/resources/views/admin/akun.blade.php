@@ -4,68 +4,73 @@
         <div class="col">
           <div class="card shadow">
             <div class="card-header border-0">
-              <h3 class="mb-0">Tabel Peserta</h3>
-                <div class="col text-right">
-                  <button class="btn btn-primary " data-toggle="modal" data-target="#modal-form">Tambah Data</button>
-                </div>
+              <!-- <button class="btn btn-primary ">Tambah Data</button> -->
+              <h3 class="mb-0">Tabel Akun</h3>
+                
             </div>
             <div class="table-responsive">
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                  <th scope="col">Aksi</th>
-                    <th scope="col">Nama</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">No WA / Hp</th>
-                    <th scope="col">Alamat</th>
-                    
+                    <th scope="col">Username</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Aksi</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
-                @foreach($peserta as $p)
+                
                   <tr>
-                  <td class="text-left">
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <div class="media-body">
+                          <span class="mb-0 text-sm">username</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td>
+                    password
+                    </td>
+                    
+                    <td class="text-right">
                       <div class="dropdown">
                         <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <i class="fas fa-ellipsis-v"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                          <a class="dropdown-item" href="{{ url('edit-peserta') }}/{{ $p->id }}">Ubah</a>
-                          <a class="dropdown-item" href="{{ url('hapus-peserta') }}/{{ $p->id }}">Hapus</a>
+                          <a class="dropdown-item" data-toggle="modal" data-target="#modal-form">Edit</a>
+                          <a class="dropdown-item" href="#">Delete</a>
                           
                         </div>
                       </div>
                     </td>
-                    <th scope="row">
-                      <div class="media align-items-center">
-                        <div class="media-body">
-                          <span class="mb-0 text-sm">{{ $p->nama }}</span>
-                        </div>
-                      </div>
-                    </th>
-                    <td>
-                    {{ $p->email }}
-                    </td>
-                    <td>
-                      <span class="badge badge-dot mr-4">
-                      {{ $p->no_hp }}
-                      </span>
-                    </td>
-                    <td>
-                    {{ $p->alamat }}
-                    </td>
-                    
                   </tr>
-                  @endforeach
+                  
                 </tbody>
               </table>
             </div>
             <div class="card-footer py-4">
               <nav aria-label="...">
                 <ul class="pagination justify-content-end mb-0">
-                  
-                  {{ $peserta->links() }}
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">
+                      <i class="fas fa-angle-left"></i>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                  <li class="page-item active">
+                    <a class="page-link" href="#">1</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">
+                      <i class="fas fa-angle-right"></i>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
                 </ul>
               </nav>
             </div>
@@ -73,7 +78,8 @@
         </div>
       </div>
       <!-- Dark table -->
-<div class="col-md-4">
+
+      <div class="col-md-4">
       <!-- <button type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#modal-form">Form</button> -->
   <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
     <div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document">
@@ -86,14 +92,13 @@
         <div class="text-center text-muted mb-4">
             <small>Silahkan isi form peserta</small>
         </div>
-        <form role="form" action="{{ url('daftarPeserta') }}" method="post">
-        {{ csrf_field() }}
+        <form role="form">
             <div class="form-group">
                 <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                         <span class="input-group-text"></span>
                     </div>
-                    <input class="form-control" placeholder="Nama" type="text" name="nama">
+                    <input class="form-control" placeholder="Nama" type="text">
                 </div>
             </div>
             <div class="form-group">
@@ -101,7 +106,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"></span>
                     </div>
-                    <input class="form-control" placeholder="Email" type="email" name="email">
+                    <input class="form-control" placeholder="Email" type="email">
                 </div>
             </div>
             <div class="form-group">
@@ -109,7 +114,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"></i></span>
                     </div>
-                    <input class="form-control" placeholder="No WA / hp" type="number" name="no_hp">
+                    <input class="form-control" placeholder="No WA / hp" type="text">
                 </div>
             </div>
             <div class="form-group">
@@ -117,13 +122,13 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"></i></span>
                     </div>
-                    <textarea rows="4" class="form-control form-control-alternative" placeholder="Alamat" name="alamat"></textarea>
+                    <textarea rows="4" class="form-control form-control-alternative" placeholder="Alamat"></textarea>
                 </div>
             </div>
             
            
             <div class="text-center">
-                <button type="submit" class="btn btn-primary my-4">Simpan</button>
+                <button type="button" class="btn btn-primary my-4">Simpan</button>
             </div>
         </form>
     </div>
@@ -135,6 +140,3 @@
         </div>
     </div>
 </div>
-
-    
-

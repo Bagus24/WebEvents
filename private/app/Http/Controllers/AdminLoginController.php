@@ -6,13 +6,14 @@ use App\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\ModelPeserta;
 
 class AdminLoginController extends Controller
 {
     use AuthenticatesUsers;
 
     protected $guard = 'admin';
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin-login';
     
     public function __construct()
         {
@@ -56,4 +57,39 @@ class AdminLoginController extends Controller
             }
             return back()->withErrors(['email' => 'Email or password are wrong.']);
         }
+
+        public function adminPeserta() 
+    {
+        
+        $peserta = ModelPeserta::paginate(1);
+        return view('admin-peserta', ['peserta' => $peserta]);
+    }
+
+    public function adminDaftarPeserta(Request $request){
+        $messages = [
+            'required' => 'Form tidak boleh ada yang kosong',
+            'min' => 'Form harus diisi minimal 8 karakter',
+            'max' => 'Form harus diisi maksimal 20 karakter',
+        ];
+
+        $this->validate($request, [
+            'nama' => 'required|max:20',
+            'email' => 'required|max:20',
+            'no_hp' => 'required',
+            'alamat' => 'required',
+        ],$messages);
+
+        $id = Auth::user()->id;
+
+        $data =  new ModelPeserta();
+        $data->id_user = $id;
+        $data->nama = $request->nama;
+        $data->email = $request->email;
+        $data->no_hp = $request->no_hp;
+        $data->alamat = $request->alamat;
+        
+        $data->save();
+        return redirect('home')->with('alert-success','Kamu berhasil Register');
+    }
+
 }

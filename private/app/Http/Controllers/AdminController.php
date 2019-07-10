@@ -3,21 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Model;
-use App\Events;
-use App\Http\Controllers\ModelEvent;
 
-class GuestController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $event = Events::paginate(1);
-    	return view('index', ['event' => $event]);
+        // return view('home');
         
     }
 
@@ -50,7 +51,7 @@ class GuestController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -87,14 +88,5 @@ class GuestController extends Controller
         //
     }
 
-    public function deskripsiEvent() 
-    {
-        return view('deskripsi-event');   
-    }
-
-    public function showAllEvent() 
-    {
-        $events = Events::all();
-    	return view('index', ['event' => $events]);
-    }
+    
 }
